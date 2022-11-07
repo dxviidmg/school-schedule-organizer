@@ -28,6 +28,12 @@ class TeacherSubject(models.Model):
     #Preguntar a Pil, si año, esta bien
     year = models.IntegerField()
 
+    def __str__(self):
+        return '{} {}'.format(self.teacher, self.subject)
+
+    class Meta:
+        unique_together = ['teacher', 'subject']
+
 class ScheduleAvailability(models.Model):
     teacher = models.OneToOneField(Teacher, on_delete=models.CASCADE)    
     monday = models.BooleanField(default=True)
@@ -37,3 +43,6 @@ class ScheduleAvailability(models.Model):
     friday = models.BooleanField(default=True)
     checkin_time = models.TimeField()
     checkout_time = models.TimeField()
+
+    def __str__(self):
+        return self.teacher
