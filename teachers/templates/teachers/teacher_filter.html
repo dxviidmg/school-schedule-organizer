@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+
+        <form method="get" style="text-align: center;">
+            <div class="modal-header">
+                <h3 class="modal-title">Filters</h3>
+            </div>
+            <div class="modal-body">
+                {% for field in teacher_filter.form %}
+                <div class="form-group">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {% render_field field class="form-control" placeholder=field.label %}
+                </div>
+                {% endfor %}
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </form>
+    
+    <h1>Sugeridos</h1>
+    {%for x in object_list%}
+    {{x}}
+    {%endfor%}
+
+
+{% endblock content %}

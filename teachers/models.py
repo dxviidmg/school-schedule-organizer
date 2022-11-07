@@ -23,7 +23,7 @@ class Teacher(Person):
 
 
 class TeacherSubject(models.Model):
-    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)        
+    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, related_name='teacher_subject')        
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
     #Preguntar a Pil, si año, esta bien
     year = models.IntegerField()
@@ -35,7 +35,7 @@ class TeacherSubject(models.Model):
         unique_together = ['teacher', 'subject']
 
 class ScheduleAvailability(models.Model):
-    teacher = models.OneToOneField(Teacher, on_delete=models.CASCADE)    
+    teacher = models.OneToOneField(Teacher, on_delete=models.CASCADE, related_name='schedule_availability')    
     monday = models.BooleanField(default=True)
     tuesday = models.BooleanField(default=True)
     wednesday = models.BooleanField(default=True)
@@ -45,4 +45,4 @@ class ScheduleAvailability(models.Model):
     checkout_time = models.TimeField()
 
     def __str__(self):
-        return self.teacher
+        return self.teacher.__str__()
