@@ -1,11 +1,12 @@
 from django.urls import path
-from .views import AreaListView, SubjectListView
+from . import views
 
 
 app_name = 'subjects'
 
 urlpatterns = [
-    path('area-list/', AreaListView.as_view(), name='area-list'),
-    path('subject-list/', SubjectListView.as_view(), name='subject-list'),
-#    path('package-create/', PackageCreateView.as_view(), name='package-create'),
+    path('area-list/', views.AreaListView.as_view(), name='area-list'),
+    path('subject-list/', views.SubjectListView.as_view(), name='subject-list'),
+    path('subject-create/', views.SubjectCreateView.as_view(), name='subject-create'),
+    path('subject-detail/<int:pk>/', views.SubjectDetailView.as_view(), name='subject-detail'),
 ]

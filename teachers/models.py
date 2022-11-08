@@ -1,5 +1,7 @@
 from django.db import models
 from subjects.models import Area, Subject
+from django.urls import reverse
+from datetime import timedelta
 
 
 class Person(models.Model):
@@ -18,13 +20,21 @@ class Person(models.Model):
 
 
 class Teacher(Person):
-    area = models.ForeignKey(Area, on_delete=models.CASCADE)
+    area = models.ForeignKey(Area, on_delete=models.CASCADE, related_name='teachers')
     hours = models.IntegerField()
 
+    def get_absolute_url(self):
+        return reverse('teachers:teacher-detail', kwargs={'pk': self.pk})
+
+    def get_teacher_subject(self):
+        return self.teacher_subject.all()
+
+    def get_total_availability_hours(self):
+        return self.schedule_availability.get_total()
 
 class TeacherSubject(models.Model):
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, related_name='teacher_subject')        
-    subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name='teacher_subject')
     #Preguntar a Pil, si año, esta bien
     year = models.IntegerField()
 
@@ -46,3 +56,14 @@ class ScheduleAvailability(models.Model):
 
     def __str__(self):
         return self.teacher.__str__()
+
+    
+    def get_hours(self):
+        return self.checkout_time.hour - self.checkin_time.hour
+
+
+    def get_days(self):
+        return sum([self.monday, self.tuesday, self.wednesday, self.thursday, self.friday])
+
+    def get_total(self):
+        return self.get_hours() * self.get_days()

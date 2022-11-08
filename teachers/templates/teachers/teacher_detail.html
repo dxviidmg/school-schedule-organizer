@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{%block content%}
+
+<h1>{{object}}</h1>
+
+{{object.get_total_availability_hours}}
+<h2>Materias impartidas</h2>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">Year</th>
+      </tr>
+    </thead>
+    <tbody>
+        {%for subject in object.get_teacher_subject%}
+      <tr>
+        <td>{{subject.subject}}</td>
+        <td>{{subject.year}}</td>
+    </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+
+{%endblock content%}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{%block content%}
+
+<h1>{{object}}</h1>
+
+<h2>Profesores con experiencia</h2>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">Year</th>
+      </tr>
+    </thead>
+    <tbody>
+        {%for teacher in object.get_teacher_subject%}
+      <tr>
+        <td>{{teacher.teacher}}</td>
+        <td>{{teacher.year}}</td>
+    </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+
+{%endblock content%}

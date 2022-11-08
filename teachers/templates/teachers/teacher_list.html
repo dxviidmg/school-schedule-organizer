@@ -9,6 +9,7 @@
         <th scope="col">Nombre</th>
         <th scope="col">Area</th>
         <th scope="col">Horas</th>
+        <th scope="col">Ver</th>
       </tr>
     </thead>
     <tbody>
@@ -17,6 +18,7 @@
         <td>{{teacher}}</td>
         <td>{{teacher.area}}</td>
         <td>{{teacher.hours}}</td>
+        <td> <a href="{{teacher.get_absolute_url}}">Ver</a></td>
     </tr>
       {%endfor%}
     </tbody>
