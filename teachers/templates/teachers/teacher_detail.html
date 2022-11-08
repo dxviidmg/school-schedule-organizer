@@ -3,8 +3,8 @@
 {%block content%}
 
 <h1>{{object}}</h1>
-
-{{object.get_total_availability_hours}}
+<p>Horas pagadas: {{object.hours}}</p>
+<p>Horas disponibles: {{object.get_total_availability_hours}}</p>
 <h2>Materias impartidas</h2>
 <table class="table">
     <thead>

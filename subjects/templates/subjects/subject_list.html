@@ -2,25 +2,34 @@
 
 {%block content%}
 
+<h1>Materias</h1>
 <a href="{%url 'subjects:subject-create'%}">Crear materia</a>
 
-<table class="table">
+<table class="table" id="table">
     <thead>
       <tr>
+        <th scope="col">Semestre</th>
         <th scope="col">Materia</th>
         <th scope="col">Area</th>
-        <th scope="col">Semestre</th>
         <th scope="col">Horas semanales</th>
-        <th scope="col">Teachers</th>
+        <th scope="col">Profesores recomendados</th>
+        <th scope="col">Ver</th>
+      </tr>
+      <tr>
+        <th scope="col">Semestre</th>
+        <th scope="col">Materia</th>
+        <th scope="col">Area</th>
+        <th scope="col">Horas semanales</th>
+        <th scope="col">Profesores recomendados</th>
         <th scope="col">Ver</th>
       </tr>
     </thead>
     <tbody>
         {%for subject in object_list%}
       <tr>
+        <td>{{subject.semester}}</td>
         <td>{{subject}}</td>
         <td>{{subject.area}}</td>
-        <td>{{subject.semester}}</td>
         <td>{{subject.weekly_hours}}</td>
         <td>{{subject.get_teachers_count}}</td>
         <td> <a href="{{subject.get_absolute_url}}">Ver</a></td>
