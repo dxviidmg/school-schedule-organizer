@@ -5,6 +5,11 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from django_filters.views import FilterView
 from .models import Teacher, Subject
+from django.views.generic.list import ListView
+
+
+class TeacherListView(LoginRequiredMixin, ListView):
+	model = Teacher
 
 
 class TeacherSuggestion(LoginRequiredMixin, FilterView):
