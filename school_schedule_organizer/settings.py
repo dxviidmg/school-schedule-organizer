@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     # Apps
     'subjects',
     'teachers',
-    'django_filters'
+    'django_filters',
+     'extra_views',
 ]
 
 MIDDLEWARE = [
