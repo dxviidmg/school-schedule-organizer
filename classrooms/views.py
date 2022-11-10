@@ -4,13 +4,13 @@ from django.urls import reverse_lazy
 from django.views.generic.detail import DetailView
 from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Career
+from .models import Classroom
 
 
-class CareerListView(LoginRequiredMixin, ListView):
-	model = Career
+class ClassroomListView(LoginRequiredMixin, ListView):
+	model = Classroom
 
-class CareerCreateView(CreateView):
-	model = Career
+class ClassroomCreateView(CreateView):
+	model = Classroom
 	fields = '__all__'
-	success_url = reverse_lazy('careers:career-list')
+	success_url = reverse_lazy('classrooms:classroom-list')

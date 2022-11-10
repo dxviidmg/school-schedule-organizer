@@ -2,21 +2,22 @@
 
 {%block content%}
 
-<h1>Areas</h1>
-<a href="{%url 'subjects:area-create'%}">Crear area</a>
+<h1>Carreras</h1>
+<a href="{%url 'careers:career-create'%}">Crear carrera</a>
+
 <table class="table">
     <thead>
       <tr>
-        <th scope="col">Area</th>
+        <th scope="col">Nombre</th>
       </tr>
       <tr>
-        <th scope="col">Area</th>
+        <th scope="col">Nombre</th>
       </tr>
     </thead>
     <tbody>
-        {%for area in object_list%}
+        {%for career in object_list%}
       <tr>
-        <td>{{area}}</td>
+        <td>{{career}}</td>
       </tr>
       {%endfor%}
     </tbody>

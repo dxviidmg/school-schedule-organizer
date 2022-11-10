@@ -38,12 +38,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'widget_tweaks',
+    'django_filters',
+     'extra_views',
     # Apps
     'subjects',
     'teachers',
     'careers',
-    'django_filters',
-     'extra_views',
+    'classrooms'
+
+
 ]
 
 MIDDLEWARE = [

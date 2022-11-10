@@ -10,6 +10,11 @@ from .models import Area, Subject
 class AreaListView(LoginRequiredMixin, ListView):
 	model = Area
 
+class AreaCreateView(CreateView):
+	model = Area
+	fields = '__all__'
+	success_url = reverse_lazy('subjects:area-list')
+
 class SubjectListView(LoginRequiredMixin, ListView):
 	model = Subject
 
