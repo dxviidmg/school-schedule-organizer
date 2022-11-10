@@ -1,14 +1,13 @@
 from .filters import TeacherFilter
+from .models import Teacher, Subject, ScheduleAvailability, TeacherSubject
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.detail import DetailView
-
+from django.views.generic.edit import CreateView
+from django.views.generic.list import ListView
 
 from django_filters.views import FilterView
-from .models import Teacher, Subject, ScheduleAvailability
-from django.views.generic.list import ListView
 from extra_views import CreateWithInlinesView, InlineFormSetFactory
-
 
 
 class TeacherListView(LoginRequiredMixin, ListView):
@@ -71,3 +70,19 @@ class TeacherCreationView(CreateWithInlinesView):
 	model = Teacher
 	fields = ['area', 'first_name', 'last_name', 'hours']
 	inlines = [IdentificationInline]
+
+class TeacherSubjectCreateView(LoginRequiredMixin, CreateView):
+	model = TeacherSubject
+	fields = ['subject', 'year']
+
+	def get_object(self):
+		return Teacher.objects.get(id=self.kwargs.get('pk'))
+
+	def form_valid(self, form):
+		teacher = self.get_object()
+
+		form.instance.teacher = teacher
+		return super(TeacherSubjectCreateView, self).form_valid(form)
+
+	def get_success_url(self):        
+		return self.get_object().get_absolute_url()

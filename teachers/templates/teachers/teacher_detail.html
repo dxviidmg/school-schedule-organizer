@@ -5,6 +5,7 @@
 <h1>{{object}}</h1>
 <p>Horas pagadas: {{object.hours}}</p>
 <p>Horas disponibles: {{object.get_total_availability_hours}}</p>
+<a href="{%url 'teachers:teacher-subject-create' object.pk%}">Crea materia impartida</a>
 <h2>Materias impartidas</h2>
 <table class="table">
     <thead>
