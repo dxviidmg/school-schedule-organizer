@@ -9,7 +9,8 @@
     <thead>
       <tr>
         <th scope="col">Semestre</th>
-        <th scope="col">Materia</th>
+        <th scope="col">Tipo</th>
+        <th scope="col">Nombre</th>
         <th scope="col">Area</th>
         <th scope="col">Horas semanales</th>
         <th scope="col">Profesores recomendados</th>
@@ -17,7 +18,8 @@
       </tr>
       <tr>
         <th scope="col">Semestre</th>
-        <th scope="col">Materia</th>
+        <th scope="col">Tipo</th>        
+        <th scope="col">Nombre</th>
         <th scope="col">Area</th>
         <th scope="col">Horas semanales</th>
         <th scope="col">Profesores recomendados</th>
@@ -28,7 +30,8 @@
         {%for subject in object_list%}
       <tr>
         <td>{{subject.semester}}</td>
-        <td>{{subject}}</td>
+        <td>{{subject.get_type}}</td>
+        <td>{%if subject.module_number%} Modulo {{subject.module_number}}: {%endif%}{{subject}}</td>
         <td>{{subject.area}}</td>
         <td>{{subject.weekly_hours}}</td>
         <td>{{subject.get_teachers_count}}</td>

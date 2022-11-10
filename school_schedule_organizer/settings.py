@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # Apps
     'subjects',
     'teachers',
+    'careers',
     'django_filters',
      'extra_views',
 ]

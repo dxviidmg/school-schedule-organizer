@@ -51,8 +51,14 @@ class TeacherSuggestion(LoginRequiredMixin, FilterView):
 			}
 			teachers_no_experience = Teacher.objects.filter(**no_experience_query).exclude(id__in=self.get_queryset())
 			teachers_no_time = Teacher.objects.filter(**no_time_query).exclude(id__in=self.get_queryset())
-			print(teachers_no_experience)
-			print(teachers_no_time)
+
+			context_data['teachers_no_experience'] = teachers_no_experience
+			context_data['teachers_no_time'] = teachers_no_time
+
+		if self.request.GET == {}:
+			context_data['all'] = True
+#			self.get_queryset = []
+
 		return context_data
 
 

@@ -20,11 +20,72 @@
                 <button type="submit" class="btn btn-primary">Search</button>
             </div>
         </form>
-    
-    <h1>Sugeridos</h1>
-    {%for x in object_list%}
-    {{x}}
-    {%endfor%}
+        
+        {%if all != True %}
+
+        <div class="col-sm">
+            <h2>Profesores recomendados</h2>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Nombre</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {%for teacher in object_list%}
+                  <tr>
+                    <td>{{teacher}}</td>
+                </tr>
+                  {%endfor%}
+                </tbody>
+              </table>
+
+          </div>
+          
+            <div class="row">
+
+              <div class="col-sm">
+
+                <h2>Profesores sin experiencia</h2>
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Nombre</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        {%for teacher in teachers_no_experience%}
+                      <tr>
+                        <td>{{teacher}}</td>
+                    </tr>
+                      {%endfor%}
+                    </tbody>
+                  </table>
+
+              </div>
+              <div class="col-sm">
+
+                <h2>Profesores sin tiempo</h2>
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Nombre</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        {%for teacher in teachers_no_time%}
+                      <tr>
+                        <td>{{teacher}}</td>
+                    </tr>
+                      {%endfor%}
+                    </tbody>
+                  </table>
+
+              </div>
+            </div>
+          
+          
 
 
+        {%endif%}
 {% endblock content %}

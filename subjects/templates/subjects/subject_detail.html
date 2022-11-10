@@ -4,7 +4,7 @@
 
 <h1>{{object}}</h1>
 
-<h2>Profesores con experiencia</h2>
+<h2>Profesores recomendados</h2>
 <table class="table">
     <thead>
       <tr>
@@ -13,10 +13,10 @@
       </tr>
     </thead>
     <tbody>
-        {%for teacher in object.get_teacher_subject%}
+        {%for teacher_subject in object.get_teacher_subject%}
       <tr>
-        <td>{{teacher.teacher}}</td>
-        <td>{{teacher.year}}</td>
+        <td>{{teacher_subject.teacher}}</td>
+        <td>{{teacher_subject.year}}</td>
     </tr>
       {%endfor%}
     </tbody>
