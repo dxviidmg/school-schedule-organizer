@@ -15,3 +15,6 @@ class Classroom(models.Model):
         if self.career:
             return '{} {} {}'.format(self.get_type(), self.career, self.number)
         return '{} {}'.format(self.get_type(), self.number)
+
+    class Meta:
+        unique_together = ['number', 'career']

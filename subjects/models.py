@@ -1,17 +1,6 @@
 from django.db import models
 from django.urls import reverse
-from careers.models import Career
-
-
-class Thing(models.Model):
-    name = models.CharField(max_length=50)
-
-    class Meta:
-        abstract = True
-        ordering = ['name']
-
-    def __str__(self):
-        return self.name
+from careers.models import  Thing, Career
 
 
 class Area(Thing):
