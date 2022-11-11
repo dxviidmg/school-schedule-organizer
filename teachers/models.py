@@ -62,8 +62,26 @@ class ScheduleAvailability(models.Model):
         return self.checkout_time.hour - self.checkin_time.hour
 
 
-    def get_days(self):
-        return sum([self.monday, self.tuesday, self.wednesday, self.thursday, self.friday])
+    def get_days_availables(self):
+        return [self.monday, self.tuesday, self.wednesday, self.thursday, self.friday]
 
+    def count_days_availables(self):
+        return sum(self.get_days_availables())
+        
     def get_total(self):
-        return self.get_hours() * self.get_days()
+        return self.get_hours() * self.count_days_availables()
+
+    def get_days_display(self):
+        l = list()
+        if self.monday:
+            l.append('Lunes')
+        if self.tuesday:
+            l.append('Martes')
+        if self.wednesday:
+            l.append('Miercoles')
+        if self.thursday:
+            l.append('Jueves')
+        if self.friday:
+            l.append('Viernes')
+
+        return l

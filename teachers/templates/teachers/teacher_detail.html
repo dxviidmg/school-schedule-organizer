@@ -4,7 +4,11 @@
 
 <h1>{{object}}</h1>
 <p>Horas pagadas: {{object.hours}}</p>
-<p>Horas disponibles: {{object.get_total_availability_hours}}</p>
+<p>Total horas disponibles: {{object.get_total_availability_hours}}</p>
+<p>Hora de entrada disponible: {{object.schedule_availability.checkin_time}}</p>
+<p>Hora de salida disponible: {{object.schedule_availability.checkout_time}}</p>
+<p>Dias disponibles: {{object.schedule_availability.get_days_display}}</p>
+
 <a href="{%url 'teachers:teacher-subject-create' object.pk%}">Crea materia impartida</a>
 <h2>Materias impartidas</h2>
 <table class="table">
