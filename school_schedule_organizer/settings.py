@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'subjects',
     'teachers',
     'careers',
-    'classrooms'
+    'classrooms',
+    'schedules'
 
 
 ]

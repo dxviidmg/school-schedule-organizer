@@ -1,0 +1,28 @@
+{%extends 'base.html'%}
+
+{%block content%}
+
+<h1>CIclos</h1>
+<a href="{%url 'schedules:schoolperiod-create'%}">Crear ciclo</a>
+
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Nombre</th>
+      </tr>
+      <tr>
+        <th scope="col">Nombre</th>
+      </tr>
+    </thead>
+    <tbody>
+        {%for schoolperiod in object_list%}
+      <tr>
+        <td>{{schoolperiod}}</td>
+      </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+
+
+{%endblock content%}

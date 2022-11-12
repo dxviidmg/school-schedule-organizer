@@ -2,13 +2,10 @@
 
 {%block content%}
 
-<h1>Crea profesor</h1>
+<h1>Crea ciclo</h1>
 
 <form method="post">{% csrf_token %}
     {{ form.as_p }}
-    {% for formset in inlines %}
-    {{ formset }}
-  {% endfor %}
     <input type="submit" value="Save">
 </form>
 
