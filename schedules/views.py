@@ -33,7 +33,7 @@ class ScheduleCreateView(LoginRequiredMixin, CreateView):
 	form_class = ScheduleForm
 
 	def form_valid(self, form):
-		form.instance._class_id = self.kwargs['pk']
+		form.instance._class = self.get_class()
 		return super().form_valid(form)
 
 	def get_class(self):

@@ -28,14 +28,19 @@ class Hours(models.Model):
     class Meta:
         abstract = True
 
-
     def clean(self):
-        cleaned_data = super().clean()
-        print(cleaned_data)
-#        if cleaned_data['checkout_time'] < cleaned_data['checkin_time']:
-#            raise ValidationError(_('Draft entries may not have a publication date.'))
-#        print(cleaned_data)
+        if self.checkin_time.minute + self.checkin_time.second + self.checkout_time.minute + self.checkout_time.second!= 0:
+            raise ValidationError(_('Solo acepta minutos y segundos en 0'))            
+        if self.checkout_time <= self.checkin_time:
+            raise ValidationError(_('La hora de salida no puede ser menor o igual a la de entrada.'))
 
+    def get_range(self):
+        return '{}-{}'.format(self.checkin_time, self.checkout_time)
+
+    def get_hours(self):
+        return self.checkout_time.hour - self.checkin_time.hour
+
+        
 class Teacher(Person):
     area = models.ForeignKey(Area, on_delete=models.CASCADE, related_name='teachers')
     hours = models.IntegerField()
@@ -72,11 +77,6 @@ class ScheduleAvailability(Hours):
 
     def __str__(self):
         return self.teacher.__str__()
-
-    
-    def get_hours(self):
-        return self.checkout_time.hour - self.checkin_time.hour
-
 
     def get_days_availables(self):
         return [self.monday, self.tuesday, self.wednesday, self.thursday, self.friday]

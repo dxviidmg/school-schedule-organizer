@@ -5,6 +5,8 @@ from careers.models import Thing, Career
 from subjects.models import Subject
 from teachers.models import Teacher, Hours
 from classrooms.models import Classroom
+from django.core.exceptions import ValidationError
+
 
 # Create your models here.
 class SchoolPeriod(Thing):
@@ -65,9 +67,16 @@ class Schedule(Hours):
     day = models.IntegerField(choices=day_choices)
     classroom = models.ForeignKey(Classroom, on_delete=models.SET_NULL, null=True, blank=True)
 
-
     def __str__(self):
-        return '{} {} {}-{}'.format(self._class, self.get_day_display(), self.checkin_time, self.checkout_time)
+        return '{} {}-{}'.format(self.get_day_display(), self.checkin_time, self.checkout_time)
 
-    def hours(self):
-        return '{}-{}'.format(self.checkin_time, self.checkout_time)
+#    class Meta:
+#        constraints = [
+#            models.UniqueConstraint(fields=['_class', 'day'], name='name of constraint')
+#        ]
+
+#    def clean(self):
+#        if Schedule.objects.filter(_class=self._class, day=self.day).exists():
+#            raise ValidationError(_('Solo acepta minutos y segundos en 0'))                        
+            
+#        return super().clean()
