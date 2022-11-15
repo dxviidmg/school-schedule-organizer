@@ -1,9 +1,9 @@
-{%extends 'base.html'%}
+{% extends 'base.html' %}
 
 {%block content%}
 
-<h1>CIclos</h1>
-<a href="{%url 'schedules:schoolperiod-create'%}">Crear ciclo</a>
+<h1>ciclo {{object}}</h1>
+
 
 
 <table class="table">
@@ -16,9 +16,9 @@
       </tr>
     </thead>
     <tbody>
-        {%for schoolperiod in object_list%}
+        {%for group in object.get_groups%}
       <tr>
-        <td><a href="{{schoolperiod.get_absolute_url}}">{{schoolperiod}}</a></td>
+        <td><a href="{{group.get_absolute_url}}">{{group}}</a></td>
       </tr>
       {%endfor%}
     </tbody>

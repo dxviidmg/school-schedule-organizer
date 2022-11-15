@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{%block content%}
+
+<h1>Grupo {{object}}</h1>
+
+
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">Profesor</th>
+        <th scope="col">Lunes</th>
+        <th scope="col">Martes</th>
+        <th scope="col">Miercoles</th>
+        <th scope="col">Jueves</th>
+        <th scope="col">Viernes</th>
+      </tr>
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">Profesor</th>
+        <th scope="col">Lunes</th>
+        <th scope="col">Martes</th>
+        <th scope="col">Miercoles</th>
+        <th scope="col">Jueves</th>
+        <th scope="col">Viernes</th>
+      </tr>
+    </thead>
+    <tbody>
+        {%for class in object.get_classes%}
+      <tr>
+        <td><a href="{%url 'schedules:class-update' class.pk%}">{{class.subject}}</a></td>
+        <td>{%if class.teacher%} {{class.teacher}} <a href="{%url 'schedules:schedule-create' class.pk%}">Add Hour</a>{%else%}{%endif%}</td>
+        <td>{{class.get_schedule_monday.hours}}</td>
+        <td>{{class.get_schedule_tuesday.hours}}</td>
+        <td>{{class.get_schedule_wednesday.hours}}</td>
+        <td>{{class.get_schedule_thursday.hours}}</td>
+        <td>{{class.get_schedule_friday.hours}}</td>
+      </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+
+
+{%endblock content%}

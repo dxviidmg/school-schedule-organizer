@@ -1,7 +1,10 @@
 from django.db import models
 from subjects.models import Area, Subject
 from django.urls import reverse
-from datetime import timedelta
+
+from django.core.exceptions import ValidationError
+from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 
 class Person(models.Model):
@@ -18,6 +21,20 @@ class Person(models.Model):
     def __str__(self):
         return self.get_full_name()
 
+class Hours(models.Model):
+    checkin_time = models.TimeField()
+    checkout_time = models.TimeField()
+
+    class Meta:
+        abstract = True
+
+
+    def clean(self):
+        cleaned_data = super().clean()
+        print(cleaned_data)
+#        if cleaned_data['checkout_time'] < cleaned_data['checkin_time']:
+#            raise ValidationError(_('Draft entries may not have a publication date.'))
+#        print(cleaned_data)
 
 class Teacher(Person):
     area = models.ForeignKey(Area, on_delete=models.CASCADE, related_name='teachers')
@@ -44,15 +61,14 @@ class TeacherSubject(models.Model):
     class Meta:
         unique_together = ['teacher', 'subject']
 
-class ScheduleAvailability(models.Model):
+class ScheduleAvailability(Hours):
     teacher = models.OneToOneField(Teacher, on_delete=models.CASCADE, related_name='schedule_availability')    
     monday = models.BooleanField(default=True)
     tuesday = models.BooleanField(default=True)
     wednesday = models.BooleanField(default=True)
     thursday = models.BooleanField(default=True)
     friday = models.BooleanField(default=True)
-    checkin_time = models.TimeField()
-    checkout_time = models.TimeField()
+
 
     def __str__(self):
         return self.teacher.__str__()
